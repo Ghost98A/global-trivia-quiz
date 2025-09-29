@@ -1,36 +1,182 @@
-# untitled app
+# 🌍 Global Trivia Quiz
 
-Create a trivia world knowledge game app
+An AI-powered trivia game that tests your world knowledge with dynamically generated questions across multiple categories.
+
+## Features
+
+- **AI-Generated Questions**: Powered by OpenAI's GPT-4o through Subscribe.dev
+- **Multiple Categories**: Geography, History, Science, Arts & Culture, Sports, Technology, Nature, and General Knowledge
+- **Dynamic Difficulty**: Easy, Medium, and Hard questions with different point values
+- **Progress Tracking**: Track your score, accuracy, and question history
+- **Persistent State**: Your game progress is saved to the cloud using Subscribe.dev storage
+- **Subscription Management**: Built-in subscription and usage tracking
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+## Tech Stack
+
+- **React 18** with TypeScript
+- **Vite** for fast builds and HMR
+- **Subscribe.dev SDK** for AI, authentication, and cloud storage
+- **CSS Variables** for theming and dark mode support
 
 ## Getting Started
 
-This application was created using VGit AI-powered development tools.
+### Prerequisites
 
-### Development
+- [Bun](https://bun.sh) (recommended) or Node.js
 
+### Installation
+
+1. Clone the repository:
 ```bash
-npm install
-npm run dev
+git clone https://github.com/Ghost98A/global-trivia-quiz.git
+cd global-trivia-quiz
 ```
 
-### Building for Production
-
+2. Install dependencies:
 ```bash
-npm run build
+bun install
 ```
 
-### Deployment
+### Running the App
 
-This project includes automated deployment via VGit workflows. Push to any branch to trigger a preview deployment.
+#### Demo Mode (No Setup Required)
 
-## VGit Workflows
+Simply start the development server:
+```bash
+bun run dev
+```
 
-This repository includes the following VGit workflows:
+The app will run in demo mode with temporary storage and limited AI usage.
 
-- **Create Feature**: Implement new features using AI assistance
-- **Ask Codebase**: Get AI-powered answers about your code
-- **Merge Branch**: Safely merge branches with validation
-- **Deploy Preview**: Automated preview deployments
+#### Production Mode
+
+1. Sign up at [Subscribe.dev](https://platform.subscribe.dev)
+2. Create a new project and copy your **Project Public Key** (starts with `pub_`)
+3. Create a `.env` file in the project root:
+```bash
+VITE_SUBSCRIBE_DEV_PROJECT_TOKEN=pub_your_actual_token_here
+```
+4. Start the development server:
+```bash
+bun run dev
+```
+
+## How to Play
+
+1. **Sign In**: Click "Sign In to Start Playing" to authenticate
+2. **Select Category**: Choose a category or click "Random Question"
+3. **Answer Questions**: Select your answer from the four options
+4. **Track Progress**: View your score, accuracy, and total questions answered
+5. **Keep Playing**: Click "Next Question" to continue testing your knowledge
+
+## Scoring System
+
+- **Easy Questions**: 10 points
+- **Medium Questions**: 20 points
+- **Hard Questions**: 30 points
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── SignInScreen.tsx    # Authentication screen
+│   ├── TriviaGame.tsx       # Main game logic
+│   ├── GameHeader.tsx       # Header with user info and subscription
+│   ├── GameStats.tsx        # Score and statistics display
+│   └── QuestionCard.tsx     # Question and answer display
+├── App.tsx                  # Main app component
+├── main.tsx                 # App entry point with provider
+├── index.css                # Global styles
+└── App.css                  # Component styles
+```
+
+## Key Features Implementation
+
+### AI Question Generation
+
+Questions are generated using OpenAI's GPT-4o with structured JSON output:
+- Questions tailored to selected categories
+- 4 multiple-choice options
+- Difficulty levels (easy, medium, hard)
+- Validated using JSON Schema
+
+### State Persistence
+
+Game state is persisted using Subscribe.dev's `useStorage` hook:
+- Score tracking
+- Questions answered
+- Correct answers count
+- Last played timestamp
+- Automatic cloud sync
+
+### Error Handling
+
+Comprehensive error handling for:
+- Insufficient credits → Upgrade prompt
+- Rate limiting → Retry timer
+- Network errors → User-friendly messages
+
+## Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `VITE_SUBSCRIBE_DEV_PROJECT_TOKEN` | Subscribe.dev Project Public Key | No (demo mode works without it) |
+
+## Building for Production
+
+```bash
+bun run build
+```
+
+The built files will be in the `dist/` directory.
+
+## Development
+
+### Type Checking
+
+```bash
+bun run build
+```
+
+### Linting
+
+```bash
+bun run lint
+```
+
+## Architecture Decisions
+
+### Component Separation Pattern
+
+Following Subscribe.dev best practices, authentication states are handled through component separation rather than conditional hook calls:
+- `SignInScreen` for unauthenticated users
+- `TriviaGame` for authenticated users with full access to hooks
+
+### React 18 Compatibility
+
+The project uses React 18 for compatibility with the Subscribe.dev SDK (React 19+ is not supported).
+
+### CSS Variables
+
+Using CSS variables for theming enables:
+- Dark mode support (automatic based on system preference)
+- Consistent color palette
+- Easy customization
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT
+
+## Acknowledgments
+
+- Powered by [Subscribe.dev](https://subscribe.dev)
+- AI questions generated by OpenAI GPT-4o
 
 ---
 
