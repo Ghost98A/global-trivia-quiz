@@ -1,10 +1,14 @@
 import { useSubscribeDev } from '@subscribe.dev/react'
+import ThemeToggle from './ThemeToggle'
 
 function SignInScreen() {
   const { signIn } = useSubscribeDev()
 
   return (
     <div className="signin-container">
+      <div className="theme-toggle-container">
+        <ThemeToggle />
+      </div>
       <div className="signin-card">
         <h1 className="app-title">🌍 Global Trivia Quiz</h1>
         <p className="app-description">

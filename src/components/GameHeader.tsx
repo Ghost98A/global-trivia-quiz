@@ -1,4 +1,5 @@
 import { useSubscribeDev } from '@subscribe.dev/react'
+import ThemeToggle from './ThemeToggle'
 
 function GameHeader() {
   const { signOut, user, usage, subscribe, subscriptionStatus } = useSubscribeDev()
@@ -21,6 +22,8 @@ function GameHeader() {
           </div>
           <span className="user-email">{user?.email}</span>
         </div>
+
+        <ThemeToggle />
 
         <button className="manage-button" onClick={subscribe!}>
           Manage Subscription

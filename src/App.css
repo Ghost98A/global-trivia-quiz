@@ -5,6 +5,13 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  position: relative;
+}
+
+.theme-toggle-container {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
 }
 
 .signin-card {
@@ -133,6 +140,36 @@
   background: var(--error);
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover:not(:disabled) {
+  background: var(--bg-card);
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(100, 108, 255, 0.2);
+}
+
+.theme-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.theme-label {
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
 }
 
 /* Game Content */
@@ -424,5 +461,18 @@
 
   .app-title {
     font-size: 2rem;
+  }
+
+  .theme-toggle-container {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .theme-label {
+    display: none;
+  }
+
+  .theme-toggle {
+    padding: 0.5rem;
   }
 }

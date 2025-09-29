@@ -80,8 +80,28 @@ h1, h2, h3 {
   margin: 0;
 }
 
+/* Light theme styles - applied via data-theme attribute */
+[data-theme='light'] {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --border: rgba(0, 0, 0, 0.1);
+  --secondary: #f0f0f0;
+
+  color-scheme: light;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+[data-theme='light'] body {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Fallback for system preference when no theme is set */
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not([data-theme]) {
     --bg-primary: #f8f9fa;
     --bg-secondary: #ffffff;
     --bg-card: #ffffff;
@@ -90,11 +110,12 @@ h1, h2, h3 {
     --border: rgba(0, 0, 0, 0.1);
     --secondary: #f0f0f0;
 
+    color-scheme: light;
     color: var(--text-primary);
     background-color: var(--bg-primary);
   }
 
-  body {
+  :root:not([data-theme]) body {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   }
 }
